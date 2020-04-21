@@ -1,0 +1,20 @@
+{
+  "name": "api_sample_javascript_test_boilerplate",
+  "version": "1.0.0",
+  "description": "Api Test of Restful services boilerplate project for Javascript with Mocha",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^7.1.1"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "sequelize": "^5.21.6",
+    "sqlite3": "^4.1.1"
+  }
+}
