@@ -23,7 +23,7 @@ router.get('/', async (req,res)=> {
 router.post('/', async (req,res)=> {
   try {
     const vegetable = await Vegetable.create(req.body);
-    res.send('Successfully added: ' + vegetable.name);
+    res.json({ id: vegetable.id, msg: 'Successfully added: ' + vegetable.name});
   } catch (err) {
     res.status(403).json({err});
   }
