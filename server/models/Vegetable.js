@@ -7,27 +7,27 @@ Vegetable.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {notEmpty: true},
+    validate: { notEmpty: true },
   },
   origin: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
   },
   price: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    validate: { min : 1},
+    validate: { min: 1 },
   },
   releaseDate: {
     type: DataTypes.DATEONLY,
-    allowNull: false
+    allowNull: false,
   },
-}, { sequelize, modelName: 'vegetable', timestamps:false });
+}, { sequelize, modelName: 'vegetable', timestamps: false });
 
 sequelize.sync()
     .then(() => Vegetable.create({
@@ -36,8 +36,8 @@ sequelize.sync()
       price: 5,
       releaseDate: new Date(2020, 1, 10)
     }))
-    .then(jane => {
-      console.log(jane.toJSON());
+    .then((vegetable) => {
+      console.log(vegetable.toJSON());
     });
 
 module.exports = { sequelize, Sequelize, Vegetable };

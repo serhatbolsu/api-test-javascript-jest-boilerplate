@@ -10,10 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "jest": "^25.4.0",
-    "superagent": "^5.2.2"
+    "superagent": "^5.2.2",
+    "superagent-defaults": "^0.1.14"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-mocha": "^6.3.0",
     "express": "^4.17.1",
     "sequelize": "^5.21.6",
     "sqlite3": "^4.1.1"

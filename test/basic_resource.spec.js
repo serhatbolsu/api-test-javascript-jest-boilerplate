@@ -1,10 +1,16 @@
-const request = require('superagent');
-const baseUrl = global.baseUrl;
+const BaseApi = require('../resources/BaseApi');
+const api = new BaseApi();
 
 describe('Vegetables', function() {
   it('should get default', async function() {
-    const res = await request.get(baseUrl + '/vegetables');
+    const res = await api.get('/vegetables');
     expect(res.status).toBe(200);
+  });
+
+  it('should get without optional', async function() {
+    const res = await api.get('vegetables', {},
+        { optional: 'false' });
+    expect(Object.keys(res.body[0]).includes('origin')).toBe(false);
   });
 
   it('should create vegetable', async function() {
@@ -14,8 +20,7 @@ describe('Vegetables', function() {
       "price": 1,
       "releaseDate": "2020-01-05",
     };
-    const res = await request.post(baseUrl + '/vegetables')
-        .send(vegetable);
+    const res = await api.post('/vegetables', vegetable);
     expect(res.status).toBe(201);
     expect(res.text).toMatch(/added: Orange/);
   });
@@ -27,11 +32,10 @@ describe('Vegetables', function() {
       "price": 1,
       "releaseDate": "2020-01-05",
     };
-    const postResult = await request.post(baseUrl + '/vegetables')
-        .send(vegetable);
+    const postResult = await api.post('/vegetables', vegetable);
     expect(postResult.status).toBe(201);
     const id = postResult.body.id.toString();
-    const res = await request.delete(baseUrl + '/vegetables' + '/' + id);
+    const res = await api.delete('/vegetables' + '/' + id);
     expect(res.status).toBe(200);
   });
 });
