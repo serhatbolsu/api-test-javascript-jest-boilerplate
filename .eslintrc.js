@@ -18,6 +18,8 @@ module.exports = {
   'rules': {
     "arrow-parents": [0, "as-needed"],
     'quotes': [0, "double"],
+    "no-unused-vars": "off",
+    "new-cap": "off",
     "require-jsdoc": "off",
     "brace-style": [0, "allman", { "allowSingleLine": true }],
     "max-len": ["error", { "code": 100 }],

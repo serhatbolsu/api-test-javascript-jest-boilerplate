@@ -34,7 +34,7 @@ sequelize.sync()
       name: 'watermelon',
       origin: 'Turkey',
       price: 5,
-      releaseDate: new Date(2020, 1, 10)
+      releaseDate: new Date(2020, 1, 10),
     }))
     .then((vegetable) => {
       console.log(vegetable.toJSON());

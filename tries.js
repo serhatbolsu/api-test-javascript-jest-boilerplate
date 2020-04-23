@@ -28,8 +28,6 @@ async function main() {
   const res3 = await baseApi.delete(`vegetables/${res2.body.id}`);
   console.log(res3.status);
   console.log(res3.body);
-
-
 };
 
 main();

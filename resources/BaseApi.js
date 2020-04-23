@@ -1,6 +1,5 @@
-// const superagent = require('superagent');
-var defaults = require('superagent-defaults');
-var superagent = defaults();
+const defaults = require('superagent-defaults');
+const superagent = defaults();
 
 class BaseApi {
   constructor() {
