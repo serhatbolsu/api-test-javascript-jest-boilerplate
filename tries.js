@@ -8,7 +8,7 @@ async function main() {
   // const res = await request.get(baseUrl + '/vegetables');
   // const vegetables = res.body.map((vegetable) => new Vegetable(vegetable));
   // vegetables[0].getters;
-  baseApi.setHeaders({ 'Content-type': 'application/json' });
+  baseApi.setAdditionalHeaders({ 'Content-type': 'application/json' });
   const res = await baseApi.get("/vegetables", {}, { optional: 'false' });
   console.log(res.status);
   console.log(res.body);

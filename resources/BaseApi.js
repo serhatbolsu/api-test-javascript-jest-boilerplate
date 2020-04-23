@@ -9,9 +9,12 @@ class BaseApi {
     this.baseUrl = 'http://localhost:3000';
   }
 
-  // set get(url) {return this.request.get(url);};
-  setHeaders(headers) {
-    this.headers = headers;
+  /**
+   * Add new headers to existing headers
+   * @param {object} headers
+   */
+  setAdditionalHeaders(headers) {
+    this.headers = Object.assign(this.headers, headers);
     this.request.set(this.headers);
   }
 

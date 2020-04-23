@@ -1,7 +1,7 @@
 const request = require('superagent');
 const baseUrl = global.baseUrl;
 
-describe('Vegetables', function() {
+describe('Vegetables baseline without framework', function() {
   it('should get default', async function() {
     const res = await request.get(baseUrl + '/vegetables');
     expect(res.status).toBe(200);

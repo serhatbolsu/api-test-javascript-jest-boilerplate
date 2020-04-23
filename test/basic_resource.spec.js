@@ -1,7 +1,7 @@
 const BaseApi = require('../resources/BaseApi');
 const api = new BaseApi();
 
-describe('Vegetables', function() {
+describe('Vegetables - using baseApi', function() {
   it('should get default', async function() {
     const res = await api.get('/vegetables');
     expect(res.status).toBe(200);
