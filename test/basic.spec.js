@@ -16,7 +16,7 @@ describe('Vegetables baseline without framework', function() {
     };
     const res = await request.post(baseUrl + '/vegetables')
         .send(vegetable);
-    expect(res.status).toBe(201);
+    expect(res.ok).toBeTruthy();
     expect(res.text).toMatch(/added: Orange/);
   });
 

@@ -12,6 +12,7 @@ class VegetableResource extends BaseApi {
   constructor() {
     super();
     this.path = '/vegetables';
+    this.vegetables = [];
   }
 
   async create(name, price, releaseDate, origin) {
@@ -27,7 +28,12 @@ class VegetableResource extends BaseApi {
 
   async getAll(optional=true) {
     const res = await this.get(this.path, {}, { optional: optional });
-    return res.body.map((vegy)=> new Vegetable(vegy));
+    this.vegetables = res.body.map((vegy)=> new Vegetable(vegy));
+    return this.vegetables;
+  }
+
+  getUniqueVegetables() {
+    return new Set(this.vegetables.map((veg)=>veg.name));
   }
 }
 

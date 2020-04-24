@@ -4,6 +4,7 @@ describe('Vegetables - using Api Resource facade', function() {
   it('should get default', async function() {
     const vegetables = await api.vegetable().getAll();
     expect(vegetables[0]).toHaveProperty('id');
+    console.log(api.vegetable().getUniqueVegetables());
   });
 
   it('should get without optional', async function() {
