@@ -1,4 +1,2 @@
-module.exports = async function() {
-  console.log('beforeAll is running');
-  global.myVal = '!!Value!!';
-};
+const api = require('../resources/api.js');
+global.api = api;
