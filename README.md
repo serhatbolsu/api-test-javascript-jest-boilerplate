@@ -1,8 +1,9 @@
 # API Testing Sample Framework with Javascript
 Restful API testing sample framework. ATDD is the suggested design pattern with the help of resouce-objects.
 
-Jest is chosen since it is sharing the same `expect` library with webdriverio. 
-It is much faster then mocha due to inherent parallelization. 
+> Jest is chosen since it is sharing the same `expect` library with webdriverio. 
+> It is much faster then mocha due to inherent parallelization. 
+
 
 ## Overview
 
@@ -14,19 +15,19 @@ You will find three suites that are representing different design choices
 
 You can copy this library and use as you like, however think about the design choices you are changing.
 
-Technology | Description
----------- | -----------
-Acceptance Test Driven Development | ATDD involves team members with different perspectives (customer, development, testing) collaborating to write acceptance cases.
-Resource Objects | Design pattern like Page Object, represent each endpoint as resource
-Code as commit | Everything about test automation should be committed, including CI
+| Technology | Description | 
+| ---------- | ----------- |
+| Acceptance Test Driven Development | ATDD involves team members with different perspectives (customer, development, testing) collaborating to write acceptance cases. |
+| Resource Objects | Design pattern like Page Object, represent each endpoint as resource | 
+| Code as commit | Everything about test automation should be committed, including CI | 
 
-Tools | Description
---- | ---
-superagent | Request is a library for making HTTP requests. This will be used for making the HTTP requests in the tests
-jest | Jest is a test executor that is running async. It includes assertion library.
-eslint | Static code analysis tool for Javascript
-husky | Regulate code commit (with linter in this case)
-express | Express is popular HTTP framework for NodeJS which will be used for creating the System Under Test.
+| Tools | Description |
+| --- | --- |
+| superagent | Request is a library for making HTTP requests. This will be used for making the HTTP requests in the tests |
+| jest | Jest is a test executor that is running async. It includes assertion library. |
+| eslint | Static code analysis tool for Javascript |
+| husky | Regulate code commit (with linter in this case) |
+| express | Express is popular HTTP framework for NodeJS which will be used for creating the System Under Test. |
 
 ## Setup
 First need to create your own configurations.
@@ -44,7 +45,9 @@ Run tests in local
 
 ```npm test```
 
+
 ## Test Suites and Example usage
+
 These are example usages of library. From 1 to 3 abstraction of endpoints increases.
 
 #### 1- basic.spec.js
@@ -70,6 +73,7 @@ Uses resource object, this is a similar method used in selenium with **page Obje
 - re-usability increased with common vegetable endpoint functions.
 - usage of superagent/requests encapsulated, however still usable look at tc#3
 - Pre-initialized resource-objects, it serve as a facade to service under test.
+
 
 ## Familiarizing Yourself with the System Under Test
 
@@ -105,6 +109,8 @@ The API supports adding and deleting individual vegetables. You can also get all
         * name
             * The name of the vegetable to delete 
 
+
 ## ToDO
+
 - Allure reporting
 - Jenkinsfile
