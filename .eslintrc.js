@@ -2,11 +2,12 @@ module.exports = {
   'env': {
     'es6': true,
     'browser': true,
-    'mocha': true,
+    "jest/globals": true
   },
   'extends': [
     'google',
-    "plugin:mocha/recommended"
+    "plugin:jest/recommended",
+    "plugin:jest/style"
   ],
   'globals': {
     'Atomics': 'readonly',
@@ -26,6 +27,6 @@ module.exports = {
     "object-curly-spacing": ["error", "always"],
   },
   'plugins': [
-    "mocha",
+      "jest"
   ],
 };

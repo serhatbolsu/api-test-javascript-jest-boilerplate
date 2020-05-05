@@ -10,7 +10,7 @@ describe('Vegetables - using baseApi', function() {
   it('should get without optional', async function() {
     const res = await api.get('vegetables', {},
         { optional: 'false' });
-    expect(Object.keys(res.body[0]).includes('origin')).toBe(false);
+    expect(Object.keys(res.body[0])).not.toContain('origin');
   });
 
   it('should create vegetable', async function() {

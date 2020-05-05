@@ -1,4 +1,4 @@
-
+// notice that `api` is globally available to use
 
 describe('Vegetables - using Api Resource facade', function() {
   it('should get default', async function() {
