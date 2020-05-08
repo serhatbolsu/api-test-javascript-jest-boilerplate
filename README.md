@@ -110,7 +110,14 @@ The API supports adding and deleting individual vegetables. You can also get all
             * The name of the vegetable to delete 
 
 
+## Contributors
+Special thanks to [gsypolt](https://github.com/gsypolt/api-testing-javascript) as he is the owner of vegetable api.
+
+Please create a pull request.
+
+
 ## ToDO
 
+- Data yml example.
 - Allure reporting
 - Jenkinsfile
