@@ -31,6 +31,7 @@ You can copy this library and use as you like, however think about the design ch
 
 ## Setup
 First need to create your own configurations.
+
 Copy the sample.env and rename to `.env`
 - change required variables
 
@@ -41,13 +42,8 @@ run the server with
 
 ```npm start```
 
-Run tests in local
-
-```npm test```
-
 
 ## Test Suites and Example usage
-
 These are example usages of library. From 1 to 3 abstraction of endpoints increases.
 
 #### 1- basic.spec.js
@@ -108,6 +104,16 @@ The API supports adding and deleting individual vegetables. You can also get all
     * Url Parameters
         * name
             * The name of the vegetable to delete 
+
+
+## Usage
+Run tests in local
+
+```npm test```
+
+Run individual test suite
+
+```npm test -- test/basic.spec.js```
 
 
 ## Contributors
