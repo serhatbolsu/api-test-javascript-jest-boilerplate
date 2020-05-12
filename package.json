@@ -25,7 +25,7 @@
       ]
     ]
   },
-  "author": "",
+  "author": "Serhat Bolsu",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.9.6",
