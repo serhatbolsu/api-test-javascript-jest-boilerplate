@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/serhatbolsu/api-test-javascript-jest-boilerplate.svg?style=svg)](https://circleci.com/gh/serhatbolsu/api-test-javascript-jest-boilerplate)
 # API Testing Sample Framework with Javascript
 Restful API testing sample framework. ATDD is the suggested design pattern with the help of resouce-objects.
 
