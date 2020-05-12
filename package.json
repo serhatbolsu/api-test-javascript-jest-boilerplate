@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "circleci": "node server/server.js & jest"
   },
   "husky": {
     "hooks": {
