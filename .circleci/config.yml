@@ -43,13 +43,13 @@ jobs:
 
       - run:
           name: "Start Vegetable API"
-          command: |
-            npm start
+          command: npm start
+          background: true
 
       - run:
           name: "Run tests"
           command: |
-            npm test -- --reporters=jest-junit
+            npm test -- --runInBand --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
 
