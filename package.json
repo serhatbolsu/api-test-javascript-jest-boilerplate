@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "jest",
-    "lint": "eslint .",
-    "circleci": "node server/server.js & jest"
+    "lint": "eslint ."
   },
   "husky": {
     "hooks": {
@@ -26,7 +25,7 @@
       ]
     ]
   },
-  "author": "",
+  "author": "Serhat Bolsu",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.9.6",
