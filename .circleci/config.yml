@@ -43,8 +43,9 @@ jobs:
 
       - run:
           name: "Start Vegetable API"
-          command: |
-            npm start
+          command: npm start
+          background: true
+
 
       - run:
           name: "Run tests"
