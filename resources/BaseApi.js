@@ -17,46 +17,68 @@ class BaseApi {
     this.request.set(this.headers);
   }
 
+  setAllureAttachment(res) {
+    // TODO: Handle other types that allure report can show properly.
+    if (Object.keys(res.body).length !== 0) {
+      const contentType = res.headers['content-type']
+          .includes('application/json') ? 'application/json' : 'txt';
+      const obj = contentType === 'application/json' ? JSON.stringify(res.body) : res.body;
+      reporter.addAttachment(res.req.path, obj, contentType);
+    }
+  }
+
   async get(url, headers={}, query={}, body={}) {
     url = url.startsWith('/') ? url : `/${url}`;
     if (Object.keys(body).length !== 0) {
-      return this.request.get(this.baseUrl + url)
+      const res = await this.request.get(this.baseUrl + url)
           .send(body)
           .set(headers)
           .query(query);
+      this.setAllureAttachment(res);
+      return res;
     } else {
-      return this.request.get(this.baseUrl + url)
+      const res = await this.request.get(this.baseUrl + url)
           .send({})
           .set(headers)
           .query(query);
+      this.setAllureAttachment(res);
+      return res;
     }
   }
 
   async post(url, body={}, headers={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    return this.request.post(this.baseUrl + url)
+    const res = await this.request.post(this.baseUrl + url)
         .send(body)
         .set(headers);
+    this.setAllureAttachment(res);
+    return res;
   }
 
   async put(url, body={}, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    return this.request.put(this.baseUrl + url)
+    const res = await this.request.put(this.baseUrl + url)
         .send(body)
         .set(headers);
+    this.setAllureAttachment(res);
+    return res;
   }
 
   async patch(url, body={}, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    return this.request.patch(this.baseUrl + url)
+    const res = await this.request.patch(this.baseUrl + url)
         .send(body)
         .set(headers);
+    this.setAllureAttachment(res);
+    return res;
   }
 
   async delete(url, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    return this.request.delete(this.baseUrl + url)
+    const res = await this.request.delete(this.baseUrl + url)
         .set(headers);
+    this.setAllureAttachment(res);
+    return res;
   }
 }
 
