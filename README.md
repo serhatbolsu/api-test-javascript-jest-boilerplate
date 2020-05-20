@@ -13,6 +13,7 @@ You will find three suites that are representing different design choices
 - Test suite using super agent.
 - Test suite using base api which represent DSL of 'Vegetable' application.
 - Test suite using Resource Objects, explained below.
+- Test suite for data import from file.
 
 You can copy this library and use as you like, however think about the design choices you are changing.
 
