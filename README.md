@@ -29,6 +29,7 @@ You can copy this library and use as you like, however think about the design ch
 | eslint | Static code analysis tool for Javascript |
 | husky | Regulate code commit (with linter in this case) |
 | express | Express is popular HTTP framework for NodeJS which will be used for creating the System Under Test. |
+| allure | Reporting tool, neat html report |
 
 ## Setup
 First need to create your own configurations.
@@ -125,6 +126,4 @@ Please create a pull request.
 
 ## ToDO
 
-- Data yml example.
-- Allure reporting
 - Jenkinsfile
