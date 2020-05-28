@@ -118,6 +118,12 @@ Run individual test suite
 
 ```npm test -- test/basic.spec.js```
 
+Post report to Microsoft Teams channel
+```
+export HOOK_URL=<microsoft_web_hook_url>
+npm run report.teams
+
+```
 
 ## Contributors
 Special thanks to [gsypolt](https://github.com/gsypolt/api-testing-javascript) as he is the owner of vegetable api.
