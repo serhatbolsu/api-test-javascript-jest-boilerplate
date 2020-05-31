@@ -71,7 +71,7 @@ Uses resource object, this is a similar method used in selenium with **page Obje
 - in `vegetable.resource.js` you can write various methods with regards to this specific endpoint.
 - re-usability increased with common vegetable endpoint functions.
 - usage of superagent/requests encapsulated, however still usable look at tc#3
-- Pre-initialized resource-objects, it serve as a facade to service under test.
+- Pre-initialized resource-objects are singleton objects. So single object is shared inside test case.
 
 
 ## Familiarizing Yourself with the System Under Test
@@ -118,6 +118,12 @@ Run individual test suite
 
 ```npm test -- test/basic.spec.js```
 
+Post report to Microsoft Teams channel
+```
+export HOOK_URL=<microsoft_web_hook_url>
+npm run report.teams
+
+```
 
 ## Contributors
 Special thanks to [gsypolt](https://github.com/gsypolt/api-testing-javascript) as he is the owner of vegetable api.
@@ -128,3 +134,4 @@ Please create a pull request.
 ## ToDO
 
 - Jenkinsfile
+- Slack Reporter (looking for help, send a PR if you are interested)

@@ -19,11 +19,15 @@ class BaseApi {
 
   setAllureAttachment(res) {
     // TODO: Handle other types that allure report can show properly.
-    if (Object.keys(res.body).length !== 0) {
-      const contentType = res.headers['content-type']
-          .includes('application/json') ? 'application/json' : 'txt';
-      const obj = contentType === 'application/json' ? JSON.stringify(res.body) : res.body;
-      reporter.addAttachment(res.req.path, obj, contentType);
+    try {
+      if (Object.keys(res.body).length !== 0) {
+        const contentType = res.headers['content-type']
+            .includes('application/json') ? 'application/json' : 'txt';
+        const obj = contentType === 'application/json' ? JSON.stringify(res.body) : res.body;
+        reporter.addAttachment(res.req.path, obj, contentType);
+      }
+    } catch (error) {
+      // ignore if allure is not set
     }
   }
 
