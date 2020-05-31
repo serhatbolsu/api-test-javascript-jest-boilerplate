@@ -1,4 +1,5 @@
 const BaseApi = require('./BaseApi');
+let instance = null;
 
 function Vegetable(jsonBody) {
   this.id = jsonBody.id;
@@ -10,9 +11,14 @@ function Vegetable(jsonBody) {
 
 class VegetableResource extends BaseApi {
   constructor() {
-    super();
-    this.path = '/vegetables';
-    this.vegetables = [];
+    if (!instance) {
+      super();
+      instance = this;
+      this.path = '/vegetables';
+      this.vegetables = [];
+    }
+
+    return instance;
   }
 
   async create(name, price, releaseDate, origin) {
