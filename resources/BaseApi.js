@@ -1,4 +1,5 @@
 const defaults = require('superagent-defaults');
+const logger = require('superagent-logger');
 const superagent = defaults();
 
 class BaseApi {
@@ -35,6 +36,7 @@ class BaseApi {
     url = url.startsWith('/') ? url : `/${url}`;
     if (Object.keys(body).length !== 0) {
       const res = await this.request.get(this.baseUrl + url)
+          .use(logger)
           .send(body)
           .set(headers)
           .query(query)
@@ -43,6 +45,7 @@ class BaseApi {
       return res;
     } else {
       const res = await this.request.get(this.baseUrl + url)
+          .use(logger)
           .send({})
           .set(headers)
           .query(query)
@@ -55,6 +58,7 @@ class BaseApi {
   async post(url, body={}, headers={}) {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.post(this.baseUrl + url)
+        .use(logger)
         .send(body)
         .set(headers)
         .ok((res) => res.status <= 500);
@@ -65,6 +69,7 @@ class BaseApi {
   async put(url, body={}, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.put(this.baseUrl + url)
+        .use(logger)
         .send(body)
         .set(headers)
         .ok((res) => res.status <= 500);
@@ -75,6 +80,7 @@ class BaseApi {
   async patch(url, body={}, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.patch(this.baseUrl + url)
+        .use(logger)
         .send(body)
         .set(headers)
         .ok((res) => res.status <= 500);
@@ -85,6 +91,7 @@ class BaseApi {
   async delete(url, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.delete(this.baseUrl + url)
+        .use(logger)
         .set(headers)
         .ok((res) => res.status <= 500);
     this.setAllureAttachment(res);
