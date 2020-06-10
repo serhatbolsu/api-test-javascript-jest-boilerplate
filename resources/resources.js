@@ -1,7 +1,7 @@
 import VegetableResource from './vegetable.resource';
 
 class Resources {
-  vegetable() {
+  get vegetable() {
     return new VegetableResource();
   }
 }

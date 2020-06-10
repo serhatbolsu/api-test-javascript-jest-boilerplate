@@ -118,6 +118,11 @@ Run individual test suite
 
 ```npm test -- test/basic.spec.js```
 
+Allure Report
+(you must have installed [allure command line](https://docs.qameta.io/allure/#_get_started))
+
+```npm run report```
+
 Post report to Microsoft Teams channel
 ```
 export HOOK_URL=<microsoft_web_hook_url>

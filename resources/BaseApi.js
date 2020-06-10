@@ -5,7 +5,7 @@ class BaseApi {
   constructor() {
     this.request = superagent;
     this.headers = {};
-    this.baseUrl = 'http://localhost:3000';
+    this.baseUrl = global.baseUrl;
   }
 
   /**
@@ -37,14 +37,16 @@ class BaseApi {
       const res = await this.request.get(this.baseUrl + url)
           .send(body)
           .set(headers)
-          .query(query);
+          .query(query)
+          .ok((res) => res.status <= 500);
       this.setAllureAttachment(res);
       return res;
     } else {
       const res = await this.request.get(this.baseUrl + url)
           .send({})
           .set(headers)
-          .query(query);
+          .query(query)
+          .ok((res) => res.status <= 500);
       this.setAllureAttachment(res);
       return res;
     }
@@ -54,7 +56,8 @@ class BaseApi {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.post(this.baseUrl + url)
         .send(body)
-        .set(headers);
+        .set(headers)
+        .ok((res) => res.status <= 500);
     this.setAllureAttachment(res);
     return res;
   }
@@ -63,7 +66,8 @@ class BaseApi {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.put(this.baseUrl + url)
         .send(body)
-        .set(headers);
+        .set(headers)
+        .ok((res) => res.status <= 500);
     this.setAllureAttachment(res);
     return res;
   }
@@ -72,7 +76,8 @@ class BaseApi {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.patch(this.baseUrl + url)
         .send(body)
-        .set(headers);
+        .set(headers)
+        .ok((res) => res.status <= 500);
     this.setAllureAttachment(res);
     return res;
   }
@@ -80,7 +85,8 @@ class BaseApi {
   async delete(url, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
     const res = await this.request.delete(this.baseUrl + url)
-        .set(headers);
+        .set(headers)
+        .ok((res) => res.status <= 500);
     this.setAllureAttachment(res);
     return res;
   }

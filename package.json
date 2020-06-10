@@ -7,6 +7,7 @@
     "start": "node server/server.js",
     "test": "jest --json --outputFile='./testResults.json'",
     "lint": "eslint .",
+    "report": "allure serve",
     "report.teams" : "TEST_FRAMEWORK=jest PROJECT_NAME='Api Sample Test Boilerplate'  PROJECT_ENVIRONMENT=SIT PROJECT_TEST_TYPE=API node utils/teamsReporter.js ../testResults.json"
   },
   "husky": {
