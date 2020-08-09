@@ -66,7 +66,7 @@ podTemplate(yaml: podDefinition) {
 
                 sh 'node -v'
                 sh 'npm -v'
-                sh 'sqlplus -v'
+                //sh 'sqlplus -v'
                 sh 'python3 --version'
                 sh 'npm install -g allure-commandline'
     //             sh 'npm install -D wiremock-standalone'
