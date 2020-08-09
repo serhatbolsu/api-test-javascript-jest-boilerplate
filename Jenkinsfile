@@ -50,8 +50,24 @@ podTemplate(yaml: podDefinition) {
             stage('Install Dependencies') {
               container('oraclelinux') {
                 print "### Installing Dependencies ###"
+
+                // check OS version
+                cat /etc/os-release
+                // install node.js
+                yum -y install oracle-nodejs-release-el7 oracle-release-el7
+                // enable oracle instant client - uncomment if required
+                // yum-config-manager --enable ol7_oracle_instantclient
+                // install sql plus - uncomment if required
+                // yum -y install oracle-instantclient19.6-basic oracle-instantclient19.6-devel oracle-instantclient19.6-sqlplus
+                // install python and python and required libraries
+                yum -y install python3 pkgconfig make gcc curl sudo git libaio wget unzip pixman gcc-c++ nodejs binutils libtool autoconf automake
+                // install linux build tools
+                yum -y groupinstall 'Development Tools'
+
                 sh 'node -v'
                 sh 'npm -v'
+                sqlplus -v
+                python3 --version
                 sh 'npm install -g allure-commandline'
     //             sh 'npm install -D wiremock-standalone'
                 sh 'npm install'
