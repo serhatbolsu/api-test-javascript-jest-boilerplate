@@ -52,7 +52,6 @@ podTemplate(yaml: podDefinition) {
                 print "### Installing Dependencies ###"
                 // install node.js
                 sh '''
-                yum -y install oracle-nodejs-release-el7
                 yum -y install nodejs
 
                 node -v
@@ -70,7 +69,7 @@ podTemplate(yaml: podDefinition) {
               // download and install python
               sh '''
                 cat /etc/os-release
-                yum -y oracle-release-el7
+                yum -y oracle-nodejs-release-el7 oracle-release-el7
                 yum-config-manager --enable ol7_oracle_instantclient
                 yum -y install oracle-instantclient19.6-basic oracle-instantclient19.6-devel oracle-instantclient19.6-sqlplus
                 sqlplus -v
@@ -118,7 +117,6 @@ podTemplate(yaml: podDefinition) {
             throw err
         } finally {
           stage('Allure report') {
-              steps {
               script {
                       allure([
                               includeProperties: false,
@@ -127,7 +125,6 @@ podTemplate(yaml: podDefinition) {
                               reportBuildPolicy: 'ALWAYS',
                               results: [[path: 'allure-results']]
                       ])
-              }
               }
           }
         }
