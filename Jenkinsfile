@@ -100,16 +100,16 @@ podTemplate(yaml: podDefinition) {
             }
           } */
 
-          stage('Run Server') {
-            container('oraclelinux') {
-              sh 'nohup npm start &'
-            }
-          }
+//           stage('Run Server') {
+//             container('oraclelinux') {
+//               sh 'nohup npm start &'
+//             }
+//           }
 
           stage('API Tests') {
             container('oraclelinux') {
               print "### Triggering API tests ###"
-              sh 'npm test'
+              sh 'npm start & npm test'
             }
           }
 
