@@ -109,6 +109,7 @@ podTemplate(yaml: podDefinition) {
           stage('API Tests') {
             container('oraclelinux') {
               print "### Triggering API tests ###"
+              sh 'cp sample.env .env'
               sh 'npm start & npm test'
             }
           }
