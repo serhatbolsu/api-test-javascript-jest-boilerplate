@@ -52,7 +52,7 @@ podTemplate(yaml: podDefinition) {
                 print "### Installing Dependencies ###"
                 // install node.js
                 sh '''
-                yum -y oracle-nodejs-release-el7
+                yum -y install oracle-nodejs-release-el7
                 yum -y install nodejs
 
                 node -v
@@ -70,7 +70,7 @@ podTemplate(yaml: podDefinition) {
               // download and install python
               sh '''
                 cat /etc/os-release
-                yum -y oracle-release-el7
+                yum -y install oracle-release-el7
                 yum-config-manager --enable ol7_oracle_instantclient
                 yum -y install oracle-instantclient19.6-basic oracle-instantclient19.6-devel oracle-instantclient19.6-sqlplus
                 sqlplus -v
