@@ -50,26 +50,10 @@ podTemplate(yaml: podDefinition) {
             stage('Install Dependencies') {
               container('oraclelinux') {
                 print "### Installing Dependencies ###"
-
-                // check OS version
-                sh 'cat /etc/os-release'
                 // install node.js
-                sh 'yum -y install oracle-nodejs-release-el7 oracle-release-el7'
-                // enable oracle instant client - uncomment if required
-                // sh 'yum-config-manager --enable ol7_oracle_instantclient'
-                // install sql plus - uncomment if required
-                // sh 'yum -y install oracle-instantclient19.6-basic oracle-instantclient19.6-devel oracle-instantclient19.6-sqlplus'
-                // install python and python and required libraries
-                sh 'yum -y install python3 pkgconfig make gcc curl sudo git libaio wget unzip pixman gcc-c++ nodejs binutils libtool autoconf automake'
-                // install linux build tools
-                sh "yum -y groupinstall 'Development Tools'"
-
+                sh 'yum -y install oracle-nodejs-release-el7'
                 sh 'node -v'
                 sh 'npm -v'
-                //sh 'sqlplus -v'
-                sh 'python3 --version'
-                sh 'npm install -g allure-commandline'
-    //             sh 'npm install -D wiremock-standalone'
                 sh 'npm install'
               }
             }
@@ -82,7 +66,7 @@ podTemplate(yaml: podDefinition) {
               // download and install python
               sh '''
                 cat /etc/os-release
-                yum -y install oracle-nodejs-release-el7 oracle-release-el7
+                yum -y oracle-release-el7
                 yum-config-manager --enable ol7_oracle_instantclient
                 yum -y install oracle-instantclient19.6-basic oracle-instantclient19.6-devel oracle-instantclient19.6-sqlplus
                 sqlplus -v
@@ -113,13 +97,15 @@ podTemplate(yaml: podDefinition) {
             }
           } */
 
+          stage('Run Server') {
+            container('oraclelinux') }
+              sh 'nohup npm start &'
+          }
+
           stage('API Tests') {
             container('oraclelinux') {
               print "### Triggering API tests ###"
-              sh """
-                export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_6
-                npm run test
-              """
+              sh 'npm test'
             }
           }
 
