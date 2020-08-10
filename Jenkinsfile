@@ -98,8 +98,9 @@ podTemplate(yaml: podDefinition) {
           } */
 
           stage('Run Server') {
-            container('oraclelinux') }
+            container('oraclelinux') {
               sh 'nohup npm start &'
+            }
           }
 
           stage('API Tests') {
