@@ -120,7 +120,8 @@ podTemplate(yaml: podDefinition) {
         } finally {
           stage('Allure report') {
               script {
-                sh 'yum -y install tree' // install tree
+                sh 'cat /etc/os-release'
+                sh 'apt-get install -y tree' // install tree
                 sh 'tree'                // now print out the current directory tree structure
                       allure([
                               includeProperties: false,
