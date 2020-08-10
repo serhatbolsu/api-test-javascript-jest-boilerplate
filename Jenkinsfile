@@ -119,9 +119,9 @@ podTemplate(yaml: podDefinition) {
             throw err
         } finally {
           stage('Allure report') {
-            container('oraclelinux') {
-              sh 'yum -y install tree'          // install tree
-              sh 'tree'                         // now print out the current directory tree structure
+            script {
+              //sh 'yum -y install tree'          // install tree
+              //sh 'tree'                         // now print out the current directory tree structure
               sh 'chmod -R o+xw allure-results' // give elevated permissions to the allure-results directory
               allure([
                 includeProperties: false,
