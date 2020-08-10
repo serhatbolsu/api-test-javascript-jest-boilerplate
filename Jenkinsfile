@@ -51,10 +51,14 @@ podTemplate(yaml: podDefinition) {
               container('oraclelinux') {
                 print "### Installing Dependencies ###"
                 // install node.js
-                sh 'yum -y install oracle-nodejs-release-el7'
-                sh 'node -v'
-                sh 'npm -v'
-                sh 'npm install'
+                sh '''
+                yum -y install oracle-nodejs-release-el7
+                yum -y install nodejs
+
+                node -v
+                npm -v
+                npm install
+                '''
               }
             }
 
@@ -70,8 +74,7 @@ podTemplate(yaml: podDefinition) {
                 yum-config-manager --enable ol7_oracle_instantclient
                 yum -y install oracle-instantclient19.6-basic oracle-instantclient19.6-devel oracle-instantclient19.6-sqlplus
                 sqlplus -v
-
-                yum -y install python3 pkgconfig make gcc curl sudo git libaio wget unzip pixman gcc-c++ nodejs binutils libtool autoconf automake
+                yum -y install python3 pkgconfig make gcc curl sudo git libaio wget unzip pixman gcc-c++ binutils libtool autoconf automake
                 yum -y groupinstall 'Development Tools'
                 python3 --version
               '''
