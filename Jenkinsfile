@@ -120,9 +120,7 @@ podTemplate(yaml: podDefinition) {
         } finally {
           stage('Allure report') {
             container('oraclelinux') {
-              sh 'yum -y install tree'          // install tree
-              sh 'tree'                         // now print out the current directory tree structure
-              sh 'chmod -R o+xw allure-results' // give elevated permissions to the allure-results directory
+//               sh 'chmod -R o+xw allure-results' // give elevated permissions to the allure-results directory
               sh 'yum -y install java-1.8.0-openjdk which' // java is required for allure report
               sh 'which java'
               sh 'export JAVA_HOME=`which java`'
