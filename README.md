@@ -40,42 +40,52 @@ Copy the sample.env and rename to `.env`
 
 ```npm install```
 
-In case you want to run against sample api *Vegetables*, 
-run the server with
-
-```npm start```
-
-
 ## Test Suites and Example usage
 These are example usages of library. From 1 to 3 abstraction of endpoints increases.
+Also you will find Emirates - Flight Simulation App Test cases in `./test-flightapp` folder
 
-#### 1- basic.spec.js
+#### 1- test/basic.spec.js
 Directly using superagent to make http requests.
 There are no helpers. Verification done with jest expect.
 
-#### 2- basic_resource.spec.js
+#### 2- test/basic_resource.spec.js
 Uses a BaseAPi.js object as a wrapper around superagent.
 
 **Benefit:**
 
-- Wrap around common request parameters
+- Wrap around common request parameters.
 - Can implement authentication at this level.
-- BaseURL is directly parsed from config
-- Can implement retry
-- superagent chain pattern can still be used
+- BaseURL is directly parsed from config.
+- Can implement retry.
+- superagent chain pattern can still be used.
 
-#### 3-base_api_resource.spec.js
+#### 3-test/base_api_resource.spec.js
 Uses resource object, this is a similar method used in selenium with **page Objects**
 
-- Vegetable(endpoint resource) is converted to an object upon retrieval
+- Vegetable(endpoint resource) is converted to an object upon retrieval.
 - in `vegetable.resource.js` you can write various methods with regards to this specific endpoint.
 - re-usability increased with common vegetable endpoint functions.
-- usage of superagent/requests encapsulated, however still usable look at tc#3
+- usage of superagent/requests encapsulated, however still usable look at tc#3.
 - Pre-initialized resource-objects are singleton objects. So single object is shared inside test case.
 
+#### 4- test-flightapp/flightapp.test.js
+Uses flightapp.resource.js, this is a similar methodology used in web testing with **page objects**
+
+- Flight Simulation App, create / get / getAll / delete / addPassenger endpoints are covered.
+- API responses are converted to object/objects(flight) upon retrieval.
+- in `flightapp.resource.js` you can write various methods with regards to this specific endpoint.
+- re-usability increased with common flightapp endpoint functions.
+- Pre-initialized resource-objects are singleton objects. So single object is shared inside test case.
 
 ## Familiarizing Yourself with the System Under Test
+### Emirates Flight Simulation App
+ please refer to [Flight Simulation Test App](https://confluence.emirates.com/display/IC/04.+Flight+Simulation+Test+App)
+  confluence page, there you can also download postman collection.
 
+In case you would like to run against app set `BASE_URL` to given deployment url of app in `.env` file
+
+
+### Vegetable App
 It's always necessary to get to know the code you are testing. 
 Let us examine the API that we are testing. The purpose of the API is to be an interface with a vegetable database. 
 Supports the following operations:
@@ -108,15 +118,23 @@ The API supports adding and deleting individual vegetables. You can also get all
         * name
             * The name of the vegetable to delete 
 
-
 ## Usage
-Run tests in local
+In case you want to run against sample api *Vegetables*, 
+run the server with in a seperate terminal.
+
+```npm start```
+
+Run flight app tests in local
+
+```npm run test.flightapp```
+
+Run vegetable api tests in local
 
 ```npm test```
 
 Run individual test suite
 
-```npm test -- test/basic.spec.js```
+```jest test/basic.spec.js --json --outputFile=./testResults.json```
 
 Allure Report
 (you must have installed [allure command line](https://docs.qameta.io/allure/#_get_started))
@@ -125,18 +143,10 @@ Allure Report
 
 Post report to Microsoft Teams channel
 ```
-export HOOK_URL=<microsoft_web_hook_url>
+# For Unix
+export HOOK_URL=<microsoft_teams_webhook_url>
+# For Windows Powershell
+$env:HOOK_URL = '<microsoft_teams_webhook_url>'
+
 npm run report.teams
-
 ```
-
-## Contributors
-Special thanks to [gsypolt](https://github.com/gsypolt/api-testing-javascript) as he is the owner of vegetable api.
-
-Please create a pull request.
-
-
-## ToDO
-
-- Jenkinsfile
-- Slack Reporter (looking for help, send a PR if you are interested)

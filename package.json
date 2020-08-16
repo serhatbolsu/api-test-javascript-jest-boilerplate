@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "jest --json --outputFile='./testResults.json'",
+    "test": "jest ./test/ --json --outputFile='./testResults.json'",
+    "test.flightapp": "jest ./test-flightapp/ --json --outputFile='./testResults.json'",
     "lint": "eslint .",
     "report": "allure serve",
     "report.teams": "TEST_FRAMEWORK=jest PROJECT_NAME='Api Sample Test Boilerplate'  PROJECT_ENVIRONMENT=SIT PROJECT_TEST_TYPE=API node utils/teamsReporter.js ../testResults.json"
@@ -40,6 +41,7 @@
     "husky": "^4.2.5",
     "jest": "^25.4.0",
     "jest-allure": "^0.1.1",
+    "shx": "^0.3.2",
     "superagent": "^5.2.2",
     "superagent-defaults": "^0.1.14"
   },
