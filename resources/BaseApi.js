@@ -18,14 +18,20 @@ class BaseApi {
     this.request.set(this.headers);
   }
 
-  setAllureAttachment(res) {
-    // TODO: Handle other types that allure report can show properly.
+  setAllureAttachment({ req = {}, res = {} }) {
     try {
-      if (Object.keys(res.body).length !== 0) {
+      if (Object.keys(req).length !== 0) {
+        const reqObj = {
+          header: req.header,
+          query: req.qs,
+          body: req._data,
+        };
+        reporter.addAttachment(`${req.method} request: ${req.url}`, JSON.stringify(reqObj), 'application/json');
+      } else if (Object.keys(res).length !== 0 ) {
         const contentType = res.headers['content-type']
-            .includes('application/json') ? 'application/json' : 'txt';
-        const obj = contentType === 'application/json' ? JSON.stringify(res.body) : res.body;
-        reporter.addAttachment(res.req.path, obj, contentType);
+            .includes('application/json') ? 'application/json' : 'text/html';
+        const obj = contentType === 'application/json' ? JSON.stringify(res.body) : res.text;
+        reporter.addAttachment(`${res.req.method} response: ${res.req.path} STATUS: ${res.status}`, obj, contentType);
       }
     } catch (error) {
       // ignore if allure is not set
@@ -34,67 +40,69 @@ class BaseApi {
 
   async get(url, headers={}, query={}, body={}) {
     url = url.startsWith('/') ? url : `/${url}`;
+    const req = this.request.get(this.baseUrl + url)
+        .use(logger)
+        .send({})
+        .set(headers)
+        .query(query)
+        .ok((response) => response.status <= 500);
     if (Object.keys(body).length !== 0) {
-      const res = await this.request.get(this.baseUrl + url)
-          .use(logger)
-          .send(body)
-          .set(headers)
-          .query(query)
-          .ok((res) => res.status <= 500);
-      this.setAllureAttachment(res);
-      return res;
-    } else {
-      const res = await this.request.get(this.baseUrl + url)
-          .use(logger)
-          .send({})
-          .set(headers)
-          .query(query)
-          .ok((res) => res.status <= 500);
-      this.setAllureAttachment(res);
-      return res;
+      req.send(body);
     }
+    this.setAllureAttachment({ req: req });
+    const res = await req;
+    this.setAllureAttachment({ res: res });
+    return res;
   }
 
   async post(url, body={}, headers={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    const res = await this.request.post(this.baseUrl + url)
+    const req = this.request.post(this.baseUrl + url)
         .use(logger)
         .send(body)
         .set(headers)
-        .ok((res) => res.status <= 500);
-    this.setAllureAttachment(res);
+        .ok((response) => response.status <= 500);
+    this.setAllureAttachment({ req: req });
+    const res = await req;
+    this.setAllureAttachment({ res: res });
     return res;
   }
 
   async put(url, body={}, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    const res = await this.request.put(this.baseUrl + url)
+    const req = this.request.put(this.baseUrl + url)
         .use(logger)
         .send(body)
         .set(headers)
-        .ok((res) => res.status <= 500);
-    this.setAllureAttachment(res);
+        .ok((response) => response.status <= 500);
+    this.setAllureAttachment({ req: req });
+    const res = await req;
+    this.setAllureAttachment({ res: res });
     return res;
   }
 
   async patch(url, body={}, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    const res = await this.request.patch(this.baseUrl + url)
+    const req = this.request.patch(this.baseUrl + url)
         .use(logger)
         .send(body)
         .set(headers)
-        .ok((res) => res.status <= 500);
-    this.setAllureAttachment(res);
+        .ok((response) => response.status <= 500);
+    this.setAllureAttachment({ req: req });
+    const res = await req;
+    this.setAllureAttachment({ res: res });
     return res;
   }
 
   async delete(url, headers ={}) {
     url = url.startsWith('/') ? url : `/${url}`;
-    const res = await this.request.delete(this.baseUrl + url)
+    const req = this.request.delete(this.baseUrl + url)
         .use(logger)
         .set(headers)
-        .ok((res) => res.status <= 500);
-    this.setAllureAttachment(res);
+        .ok((response) => response.status <= 500);
+    this.setAllureAttachment({ req: req });
+    const res = await req;
+    this.setAllureAttachment({ res: res });
     return res;
   }
 }

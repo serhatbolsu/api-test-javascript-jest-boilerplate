@@ -4,17 +4,22 @@
   "description": "Api Test of Restful services boilerplate project for Javascript with Jest",
   "main": "index.js",
   "scripts": {
+    "clean": "shx rm -rf ./testResults.json ./allure-results",
     "start": "node server/server.js",
     "test": "jest ./test/ --json --outputFile='./testResults.json'",
     "test.flightapp": "jest ./test-flightapp/ --json --outputFile='./testResults.json'",
     "lint": "eslint .",
     "report": "allure serve",
-    "report.teams": "TEST_FRAMEWORK=jest PROJECT_NAME='Api Sample Test Boilerplate'  PROJECT_ENVIRONMENT=SIT PROJECT_TEST_TYPE=API node utils/teamsReporter.js ../testResults.json"
+    "report.teams": "node ./utils/teamsReporter.js ../testResults.json"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.emirates.com/scm/techqa/api_sit_test_framework_javascript.git"
   },
   "babel": {
     "presets": [

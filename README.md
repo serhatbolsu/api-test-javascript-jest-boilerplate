@@ -1,19 +1,20 @@
 [![CircleCI](https://circleci.com/gh/serhatbolsu/api-test-javascript-jest-boilerplate.svg?style=svg)](https://circleci.com/gh/serhatbolsu/api-test-javascript-jest-boilerplate)
 # API Testing Sample Framework with Javascript
 Restful API testing sample framework. ATDD is the suggested design pattern with the help of resouce-objects.
-
-> Jest is chosen since it is sharing the same `expect` library with webdriverio. 
-> It is much faster then mocha due to inherent parallelization. 
-
-
+ 
 ## Overview
 
-In this framework, you will find test suites for included restful api "Vegetable" service. 
-You will find three suites that are representing different design choices
+This framework is designed to be boilerplate/sample for testing api's.
+You will find test suites for included restful api "Vegetable" service and 
+also for Emirates Flight Simulation Test Application. 
+For the former example, there are three suites that are representing different design choices:
 - Test suite using super agent.
 - Test suite using base api which represent DSL of 'Vegetable' application.
 - Test suite using Resource Objects, explained below.
 - Test suite for data import from file.
+
+for Flight Simulation app:
+- Emirates Flight Simulation Test Suite with Resource Objects.
 
 You can copy this library and use as you like, however think about the design choices you are changing.
 
@@ -33,10 +34,13 @@ You can copy this library and use as you like, however think about the design ch
 | allure | Reporting tool, neat html report |
 
 ## Setup
+Download or clone the project
+
 First need to create your own configurations.
+- change required variables
 
 Copy the sample.env and rename to `.env`
-- change required variables
+- run install
 
 ```npm install```
 
@@ -82,7 +86,7 @@ Uses flightapp.resource.js, this is a similar methodology used in web testing wi
  please refer to [Flight Simulation Test App](https://confluence.emirates.com/display/IC/04.+Flight+Simulation+Test+App)
   confluence page, there you can also download postman collection.
 
-In case you would like to run against app set `BASE_URL` to given deployment url of app in `.env` file
+In case you would like to run against app, set `BASE_URL` to given deployment url of app in `.env` file
 
 
 ### Vegetable App
@@ -120,7 +124,7 @@ The API supports adding and deleting individual vegetables. You can also get all
 
 ## Usage
 In case you want to run against sample api *Vegetables*, 
-run the server with in a seperate terminal.
+run the server with in a separate terminal.
 
 ```npm start```
 
@@ -134,7 +138,7 @@ Run vegetable api tests in local
 
 Run individual test suite
 
-```jest test/basic.spec.js --json --outputFile=./testResults.json```
+```jest ./test/basic.spec.js --json --outputFile=./testResults.json```
 
 Allure Report
 (you must have installed [allure command line](https://docs.qameta.io/allure/#_get_started))
@@ -150,3 +154,9 @@ $env:HOOK_URL = '<microsoft_teams_webhook_url>'
 
 npm run report.teams
 ```
+
+## FAQ
+### Use mocha or jest as test library
+Jest is chosen since it is sharing the same `expect` library with webdriverio. 
+> It is much faster then mocha due to inherent parallelization.
+

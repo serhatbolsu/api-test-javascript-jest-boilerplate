@@ -24,8 +24,9 @@ module.exports = {
     "new-cap": "off",
     "require-jsdoc": "off",
     "brace-style": [0, "allman", { "allowSingleLine": true }],
-    "max-len": ["error", { "code": 100 }],
+    "max-len": ["error", { "code": 120 }],
     "object-curly-spacing": ["error", "always"],
+    "linebreak-style": ["error", "unix"]
   },
   'plugins': [
       "jest"

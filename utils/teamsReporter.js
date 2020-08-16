@@ -1,19 +1,18 @@
 const request = require('superagent');
 
 function main() {
-  if (process.env.TEST_FRAMEWORK === undefined) {
-    throw new Error('TEST_FRAMEWORK should be defined either as "jest" or "mocha"');
-  } else if (process.env.HOOK_URL === undefined) {
+  if (process.env.HOOK_URL === undefined) {
     throw new Error('HOOK_URL should be defined as Microsoft teams channel hook url');
   }
   const file = process.argv[2];
   if (!file) throw new Error('File path is not given');
 
-  const platform = process.env.TEST_FRAMEWORK;
+  // either 'jest' or 'wdio'
+  const platform = process.env.TEST_FRAMEWORK || 'jest';
   const hookUrl = process.env.HOOK_URL;
-  const project = process.env.PROJECT_NAME;
-  const environment = process.env.PROJECT_ENVIRONMENT;
-  const type = process.env.PROJECT_TEST_TYPE;
+  const project = process.env.PROJECT_NAME || "API SIT Test JS Boilerplate";
+  let environment = process.env.PROJECT_ENVIRONMENT || 'SIT';
+  let type = process.env.PROJECT_TEST_TYPE || "API";
   const buildUrl = process.env.BUILD_URL;
 
   let total = 0;
@@ -28,8 +27,14 @@ function main() {
     passed= testData['numPassedTests'];
     failed = testData['numFailedTests'];
     skipped = total - passed - failed;
-  } else if (platform === 'mocha') {
-    // TODO: Implement this
+  } else if (platform === 'wdio') {
+    const testData = require(file);
+    environment = testData['capabilities'][0]['browserName'];
+    type = 'UI';
+    passed = testData['state']['passed'];
+    failed = testData['state']['failed'];
+    skipped = testData['state']['skipped'];
+    total = passed + failed + skipped;
   }
 
   let results = `**${total} Tests**: &#x2714;${passed} passed`;
