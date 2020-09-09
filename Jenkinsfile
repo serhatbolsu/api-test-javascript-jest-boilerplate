@@ -104,6 +104,7 @@ podTemplate(yaml: podDefinition) {
             container('oraclelinux') {
               print "### Triggering API tests ###"
               sh 'cp sample.env .env'
+//               sh "export BASE_URL=${params.BASE_URL}"   // enable if there is need for parametized build
               sh 'npm start & npm test'
             }
           }
