@@ -2,6 +2,10 @@ import resources from "../resources/resources";
 import passengerData from "../data/passenger";
 
 describe('Flight Simulator Test App', function() {
+  beforeAll(function() {
+    resources.flightapp.baseUrl = global.flightAppUrl;
+  });
+
   afterAll(async function() {
     await resources.flightapp.deleteAllFlights();
   });

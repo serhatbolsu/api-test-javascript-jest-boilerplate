@@ -10,6 +10,7 @@ class JestEnvironment extends NodeEnvironment {
   async setup() {
     await super.setup();
     this.global.baseUrl = process.env.BASE_URL;
+    this.global.flightAppUrl = process.env.FLIGHT_APP_URL;
   }
 
   async teardown() {
