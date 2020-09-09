@@ -14,14 +14,14 @@ describe('Vegetables - using Api Resource facade', function() {
 
   it('should create vegetable', async function() {
     const res = await resources.vegetable.create(
-        "Orange", "UAE", "5", "2020-03-10");
+        "Orange", 10, "2020-03-10", "UAE");
     expect(res.status).toBe(201);
     expect(res.text).toMatch(/added: Orange/);
   });
 
   it('should delete vegetable', async function() {
     const res = await resources.vegetable.create(
-        "Orange", "UAE", "5", "2020-03-10");
+        "Orange", 10, "2020-03-10", "UAE");
     expect(res.status).toBe(201);
     const id = res.body.id;
     const res2 = await resources.vegetable.delete('/vegetables' + '/' + id);
