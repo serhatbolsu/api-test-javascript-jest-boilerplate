@@ -134,14 +134,14 @@ podTemplate(yaml: podDefinition) {
               ])
             }
           }
-          stage('Teams Report') {
-            container('oraclelinux') {
-              sh "export HOOK_URL=${params.HOOK_URL}"
-              sh "export PROJECT_NAME=${params.PROJECT_NAME}"
-              sh "export PROJECT_ENVIRONMENT=${params.PROJECT_ENVIRONMENT}"
-              sh "npm run report.teams"
-            }
-          }
+//           stage('Teams Report') {
+//             container('oraclelinux') {
+//               sh "export HOOK_URL=${params.HOOK_URL}"
+//               sh "export PROJECT_NAME=${params.PROJECT_NAME}"
+//               sh "export PROJECT_ENVIRONMENT=${params.PROJECT_ENVIRONMENT}"
+//               sh "npm run report.teams"
+//             }
+//           }
         }
       }
     }
