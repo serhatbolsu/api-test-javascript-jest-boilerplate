@@ -1,12 +1,18 @@
 #!/usr/bin/env groovy
 
 
-// properties([
-//     parameters([
-//         string(defaultValue: "http://xxx" ,
-//         description: 'Application main url', name: 'BASE_URL'),
-//     ])
-// ])
+properties([
+    parameters([
+        string(defaultValue: "Api Test of Restful services boilerplate" ,
+            description: 'Project Name', name: 'PROJECT_NAME'),
+        string(defaultValue: "TEST" ,
+            description: 'Project Environment', name: 'PROJECT_ENVIRONMENT'),
+        string(defaultValue: "http://localhost:3000" ,
+            description: 'Base Url', name: 'BASE_URL'),
+        string(defaultValue: "" ,
+            description: 'Teams channel hook', name: 'HOOK_URL'),
+    ])
+])
 
 
 def podDefinition = """
@@ -126,6 +132,14 @@ podTemplate(yaml: podDefinition) {
                 reportBuildPolicy: 'ALWAYS',
                 results: [[path: 'allure-results']]
               ])
+            }
+          }
+          stage('Teams Report') {
+            container('oraclelinux') {
+              sh "export HOOK_URL=${params.HOOK_URL}"
+              sh "export PROJECT_NAME=${params.PROJECT_NAME}"
+              sh "export PROJECT_ENVIRONMENT=${params.PROJECT_ENVIRONMENT}"
+              sh "npm run report.teams"
             }
           }
         }

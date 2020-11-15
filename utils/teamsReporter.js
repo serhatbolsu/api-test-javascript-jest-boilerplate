@@ -1,4 +1,5 @@
 const request = require('superagent');
+require('dotenv').config();
 
 function main() {
   if (process.env.HOOK_URL === undefined) {
