@@ -61,7 +61,7 @@ podTemplate(yaml: podDefinition) {
                 // install node.js
                 sh '''
                 yum -y install oracle-nodejs-release-el7
-                yum -y install nodejs
+                yum -y install nodejs make
 
                 node -v
                 npm -v
