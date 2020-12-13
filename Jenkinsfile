@@ -21,7 +21,7 @@ kind: Pod
 spec:
   containers:
   - name: oraclelinux
-    image: 'oraclelinux:7-slim'
+    image: 'quay.io/emiratesgroup/oracle-linux:7-slim'
     tty: true
     command:
     - 'cat'
@@ -35,6 +35,8 @@ spec:
       requests:
         memory: "500Mi"
         cpu: "500m"
+  imagePullSecrets:
+  - name: "emiratesgroup-robot-common-pull-secret"
   nodeSelector:
     env: "dev"
   restartPolicy: "Never"
