@@ -11,6 +11,9 @@ properties([
             description: 'Base Url', name: 'BASE_URL'),
         string(defaultValue: "" ,
             description: 'Teams channel hook', name: 'HOOK_URL'),
+    ]),
+    pipelineTriggers([
+        cron('H/30 * * * *') // this will scan for new updates every minute
     ])
 ])
 
@@ -46,11 +49,6 @@ spec:
 
 podTemplate(yaml: podDefinition) {
   node(POD_LABEL) {
-    properties([
-      pipelineTriggers([
-        cron('H/60 * * * *') // this will scan for new updates every 1 minute
-      ]),
-    ])
     timestamps {
       ansiColor('xterm') {
         try {
