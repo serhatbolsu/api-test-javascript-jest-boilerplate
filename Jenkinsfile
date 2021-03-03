@@ -46,6 +46,11 @@ spec:
 
 podTemplate(yaml: podDefinition) {
   node(POD_LABEL) {
+    properties([
+      pipelineTriggers([
+        cron('H/60 * * * *') // this will scan for new updates every 1 minute
+      ]),
+    ])
     timestamps {
       ansiColor('xterm') {
         try {
