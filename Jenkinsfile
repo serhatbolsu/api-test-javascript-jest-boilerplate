@@ -69,7 +69,7 @@ podTemplate(yaml: podDefinition) {
 
                 node -v
                 npm -v
-                npm install
+                npm install --production
                 '''
               }
             }
