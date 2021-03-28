@@ -11,7 +11,8 @@ properties([
             description: 'Base Url', name: 'BASE_URL'),
         string(defaultValue: "" ,
             description: 'Teams channel hook', name: 'HOOK_URL'),
-    ])
+    ]),
+    disableConcurrentBuilds()
 ])
 
 
