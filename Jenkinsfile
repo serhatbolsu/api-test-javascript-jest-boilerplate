@@ -12,9 +12,6 @@ properties([
         string(defaultValue: "" ,
             description: 'Teams channel hook', name: 'HOOK_URL'),
     ]),
-    pipelineTriggers([
-        cron('H/5 * * * *') // this will scan for new updates every minute
-    ]),
     disableConcurrentBuilds()
 ])
 
