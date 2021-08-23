@@ -26,12 +26,14 @@ class BaseApi {
           query: req.qs,
           body: req._data,
         };
-        reporter.addAttachment(`${req.method} request: ${req.url}`, JSON.stringify(reqObj), 'application/json');
+        reporter.addAttachment(`${req.method} request: ${req.url}`, JSON.stringify(reqObj,
+            null, 2), 'application/json');
       } else if (Object.keys(res).length !== 0 ) {
         const contentType = res.headers['content-type']
             .includes('application/json') ? 'application/json' : 'text/html';
-        const obj = contentType === 'application/json' ? JSON.stringify(res.body) : res.text;
-        reporter.addAttachment(`${res.req.method} response: ${res.req.path} STATUS: ${res.status}`, obj, contentType);
+        const obj = contentType === 'application/json' ? JSON.stringify(res.body, null, 2) : res.text;
+        reporter.addAttachment(
+            `${res.req.method} response: ${res.req.path} STATUS: ${res.status}`, obj, contentType);
       }
     } catch (error) {
       // ignore if allure is not set
