@@ -44,6 +44,10 @@ Copy the sample.env and rename to `.env`
 
 ```npm install```
 
+In case, you do not want to install demo application packages (testing your own application)
+
+```npm install --production```
+
 ## Test Suites and Example usage
 These are example usages of library. From 1 to 3 abstraction of endpoints increases.
 Also you will find Emirates - Flight Simulation App Test cases in `./test-flightapp` folder
@@ -159,3 +163,7 @@ npm run report.teams
 ### Use mocha or jest as test library
 One reason is jest is chosen since it is sharing the same `expect` library with webdriverio. 
 Secondly, It is much faster then mocha due to inherent parallelization.
+
+### Sqlite3 install error
+You might have to have local admin in windows so assuming you are not going to use the vegetable app, 
+you can simply install with `npm install --production` and omit installing demo application. 
