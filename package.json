@@ -36,20 +36,22 @@
   "author": "Serhat Bolsu",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "babel-jest": "^26.0.1",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-jest": "^23.9.0",
+    "husky": "4.3.0",
     "jest": "^25.4.0",
     "jest-allure": "^0.1.1",
     "shx": "^0.3.2",
     "superagent": "^5.2.2",
     "superagent-defaults": "^0.1.14",
     "superagent-logger": "^1.1.0",
-    "husky": "4.3.0"
+    "superagent-logger": "^1.1.0"
   },
   "devDependencies": {
     "express": "^4.17.1",
