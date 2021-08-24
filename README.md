@@ -163,7 +163,3 @@ npm run report.teams
 ### Use mocha or jest as test library
 One reason is jest is chosen since it is sharing the same `expect` library with webdriverio. 
 Secondly, It is much faster then mocha due to inherent parallelization.
-
-### Sqlite3 install error
-You might have to have local admin in windows so assuming you are not going to use the vegetable app, 
-you can simply install with `npm install --production` and omit installing demo application. 
